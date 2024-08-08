@@ -66,7 +66,7 @@ Historical prices from isthereanydeal.com (ITAD)
                     'price_decay_rate': ''
 
                 }
-            '''
+
 - EDA
 - Patterns
 - Simulation
