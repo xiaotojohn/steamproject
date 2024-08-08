@@ -1,7 +1,10 @@
+## Overview
 Research Project By xiaotojohn.
-Analysis of the top 3000 most owned games based on their historical prices.
-Rank based on steamspy.com
-Historical prices from isthereanydeal.com (ITAD)
+Analysis of the top 3000 most owned games based on their historical prices. Rank based on steamspy.com
+Historical prices from isthereanydeal.com (ITAD). 
+
+This analysis aimed at finding the discounting behaviors of popular video games, which will help both game developers and platform managers to understand the distribution patterns of video games. And  consumers with this project may be able to find a optimized strategy to save their money on games.
+
 
 ## Workflow(Structure of Report)
 - Data Collection & Organization
@@ -67,9 +70,30 @@ Historical prices from isthereanydeal.com (ITAD)
 
                 }
 
-- EDA
-- Patterns
-- Simulation
+- EDA(In progress)
+    - Games started as free-to-play will not be considered.
+    - A overview of distribution in features. 
+    - A overview of tags and developers, a insight into the market preferences. 
+    - A cohort based EDA will be conducted on games released in different years. 
+- Patterns(In progress)
+    - Assumption To be examined: Discounting patterns may tend to be in the three following patterns
+        - Decreasing Convex
+        - Decreasing Concave
+        - Increasing at first, then into one of the categories above( Many games will have a launch price)
+    - Approaches:
+        - Patterns will be applied to different cohorts of games(2-10years). Games with a price history of less than 2 years will be ignored.
+        - moving average price of 12 monthes to smooth the curve, then find the first and second derivatives.
+        - How to categorize the patterns? As we are talking about curves. One solution might be KNN--use first/second derivatives as a vector.
+        - other methods? need more research.
+- Optimized Buying Strategy for Players(In progress)
+    - Monte Carlo simulation for a game player with a different buying strategies. Prices sampled from the data set.
+    - Evolutionary algorithm？
+    - Any other approaches? 
+- Predication(Really?) and evaluation
+    - Machine learning algorithms for prediction.
+        - First_discount_date based on tags/dev/other info: But from the EDA, many games will come with a launch discount, there will be a super high chance of predicting a launch discount.
+        - What else to predict?
+- Summary
 
 
 ## Dev Notes
@@ -79,12 +103,12 @@ Discount continued less than a day will be counted as one-day sale, this is base
 
 
 ## Files
-### jupyter notebooks
+### /jupyter_nb
 - **data_collection.ipynb**: script to fetch data from APIs, .env file required. All collected data has been stored in this project folder so you dont have to run this script. If you need to , you have to register in Isthereanydeals.com(ITAD) to acquire an API
 - **data_renomalization.ipynb**:  This script is used to process the price histories.The length of price histories are different for all games, thus we choose to preprocess the historical data in this script to produce uniform indicators for all games.
 - **analysis.ipynb**: data analysis note book containing visualization and statistical models.
 
-### data files
+### /data
 - **/textfiles/game_info/*.csv** : game info in batches from ITAD. Those files has been merged into *anydeal.csv*.
 - **/textfiles/game_info/*.csv** : historical prices in batches from ITAD. Those files has been merged into *anydeal_prices.csv*.
 - **shop_info.csv**: ITAD assigned unique IDs for different platforms, here we only need steam's ID.
